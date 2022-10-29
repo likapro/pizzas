@@ -19,7 +19,7 @@ public class PizzaOrder {
 
     private List<Pizza> pizzas = new ArrayList<>();
 
-    public void addPazza(Pizza pizza) {
+    public void addPizza(Pizza pizza) {
         this.pizzas.add(pizza);
     }
 }
