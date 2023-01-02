@@ -14,8 +14,8 @@ import static pizzas.Ingredient.Type.*;
 @Slf4j
 @Controller
 @RequestMapping("/design")
-@SessionAttributes("tacoOrder")
-public class DesingPizzaController {
+@SessionAttributes("pizzaOrder")
+public class DesignPizzaController {
 
     @ModelAttribute
     public void addIngredientsToModel(Model model) {

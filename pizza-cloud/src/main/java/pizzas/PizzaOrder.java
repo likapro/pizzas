@@ -14,7 +14,7 @@ public class PizzaOrder {
     private String deliveryState;
     private String deliveryZip;
     private String ccNumber;
-    private String ccExpiraton;
+    private String ccExpiration;
     private String ccCVV;
 
     private List<Pizza> pizzas = new ArrayList<>();

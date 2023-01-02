@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Pizza Cloud</title>
+        <link rel="stylesheet" th:href="@{/styles.css}" />
+    </head>
+
+    <body>
+
+        <form method="POST" th:action="@{/orders}" th:object="${pizzaOrder}">
+            <h1>Order your pizza creations!</h1>
+
+            <img th:src="@{/images/PizzaCloud.png}"/>
+
+            <h3>Your pizzas in this order:</h3>
+            <a th:href="@{/design}" id="another">Design another pizza</a><br/>
+            <ul>
+                <li th:each="pizza : ${pizzaOrder.pizzas}">
+                    <span th:text="${pizza.name}">pizza name</span>
+                </li>
+            </ul>
+
+            <h3>Deliver my pizza masterpieces to...</h3>
+            <label for="deliveryName">Name: </label>
+            <input type="text" th:field="*{deliveryName}" id="deliveryName"/>
+            <br/>
+
+            <label for="deliveryStreet">Street: </label>
+            <input type="text" th:field="*{deliveryStreet}" id="deliveryStreet"/>
+            <br/>
+
+            <label for="deliveryCity">City: </label>
+            <input type="text" th:field="*{deliveryCity}" id="deliveryCity"/>
+            <br/>
+
+            <label for="deliveryState">State: </label>
+            <input type="text" th:field="*{deliveryState}" id="deliveryState"/>
+            <br/>
+
+            <label for="deliveryZip">Zip code: </label>
+            <input type="text" th:field="*{deliveryZip}" id="deliveryZip"/>
+            <br/>
+
+            <h3>Here's how I'll pay...</h3>
+            <label for="ccNumber">Credit Card #: </label>
+            <input type="text" th:field="*{ccNumber}" id="ccNumber"/>
+            <br/>
+
+            <label for="ccExpiration">Expiration: </label>
+            <input type="text" th:field="*{ccExpiration}" id="ccExpiration"/>
+            <br/>
+
+            <label for="ccCVV">CVV: </label>
+            <input type="text" th:field="*{ccCVV}" id="ccCVV"/>
+            <br/>
+
+            <input type="submit" value="Submit Order"/>
+        </form>
+    </body>
+</html>
