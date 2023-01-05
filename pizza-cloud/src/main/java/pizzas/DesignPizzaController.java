@@ -1,17 +1,16 @@
 package pizzas;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import pizzas.data.IngredientRepository;
 
 import javax.validation.Valid;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static pizzas.Ingredient.Type.*;
 
 @Slf4j
 @Controller
@@ -19,24 +18,40 @@ import static pizzas.Ingredient.Type.*;
 @SessionAttributes("pizzaOrder")
 public class DesignPizzaController {
 
+    private final IngredientRepository ingredientRepo;
+
+    @Autowired
+    public DesignPizzaController(IngredientRepository ingredientRepo) {
+        this.ingredientRepo = ingredientRepo;
+    }
+
+//    @ModelAttribute
+//    public void addIngredientsToModel(Model model) {
+//        List<Ingredient> ingredients = Arrays.asList(
+//                new Ingredient("FLTO", "Flour Tortilla", WRAP),
+//                new Ingredient("COTO", "Corn Tortilla", WRAP),
+//                new Ingredient("GRBF", "Ground Beef", PROTEIN),
+//                new Ingredient("CARN", "Carnitas", PROTEIN),
+//                new Ingredient("TMTO", "Diced Tomatoes", VEGGIES),
+//                new Ingredient("LETC", "Lettuce", VEGGIES),
+//                new Ingredient("CHED", "Cheddar", CHEESE),
+//                new Ingredient("JACK", "Monterrey Jack", CHEESE),
+//                new Ingredient("SLSA", "Salsa", SAUCE),
+//                new Ingredient("SRCR", "Sour Cream", SAUCE));
+//
+//        Ingredient.Type[] types = Ingredient.Type.values();
+//        for (Ingredient.Type type : types) {
+//            model.addAttribute(type.toString().toLowerCase(),
+//            filterByType(ingredients, type));
+//        }
+//    }
+
     @ModelAttribute
     public void addIngredientsToModel(Model model) {
-        List<Ingredient> ingredients = Arrays.asList(
-                new Ingredient("FLTO", "Flour Tortilla", WRAP),
-                new Ingredient("COTO", "Corn Tortilla", WRAP),
-                new Ingredient("GRBF", "Ground Beef", PROTEIN),
-                new Ingredient("CARN", "Carnitas", PROTEIN),
-                new Ingredient("TMTO", "Diced Tomatoes", VEGGIES),
-                new Ingredient("LETC", "Lettuce", VEGGIES),
-                new Ingredient("CHED", "Cheddar", CHEESE),
-                new Ingredient("JACK", "Monterrey Jack", CHEESE),
-                new Ingredient("SLSA", "Salsa", SAUCE),
-                new Ingredient("SRCR", "Sour Cream", SAUCE));
-
+        List<Ingredient> ingredients = ingredientRepo.findAll();
         Ingredient.Type[] types = Ingredient.Type.values();
-        for (Ingredient.Type type : types) {
-            model.addAttribute(type.toString().toLowerCase(),
-            filterByType(ingredients, type));
+        for(Ingredient.Type type : types) {
+            model.addAttribute(type.toString().toLowerCase(), filterByType(ingredients, type));
         }
     }
 

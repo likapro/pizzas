@@ -7,6 +7,7 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -22,12 +23,15 @@ public class PizzaOrder {
     private String deliveryState;
     @NotBlank
     private String deliveryZip;
-    @CreditCardNumber
+    //@CreditCardNumber
     private String ccNumber;
-    @Pattern(regexp="0-9*")
+    //@Pattern(regexp="0-9*")
     private String ccExpiration;
     @Digits(integer = 3, fraction = 0)
     private String ccCVV;
+    private static final long serialVersionUID = 1L;
+    private Long id;
+    private Date placedAt;
 
     private List<Pizza> pizzas = new ArrayList<>();
 
