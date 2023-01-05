@@ -3,6 +3,7 @@ package pizzas.web;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import pizzas.Ingredient;
+import pizzas.data.IngredientRepository;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,8 +13,15 @@ import static pizzas.Ingredient.Type.*;
 @Component
 public class IngredientByIdConverter implements Converter<String, Ingredient> {
 
-    private Map<String, Ingredient> ingredientMap = new HashMap<>();
+    //private Map<String, Ingredient> ingredientMap = new HashMap<>();
 
+    private IngredientRepository ingredientRepo;
+
+    public IngredientByIdConverter(IngredientRepository ingredientRepo) {
+        this.ingredientRepo = ingredientRepo;
+    }
+
+/*
     public IngredientByIdConverter() {
         ingredientMap.put("FLTO", new Ingredient("FLTO", "Flour Tortilla", WRAP));
         ingredientMap.put("COTO", new Ingredient("COTO", "Corn Tortilla", WRAP));
@@ -25,15 +33,15 @@ public class IngredientByIdConverter implements Converter<String, Ingredient> {
         ingredientMap.put("JACK", new Ingredient("JACK", "Monterrey Jack", CHEESE));
         ingredientMap.put("SLSA", new Ingredient("SLSA", "Salsa", SAUCE));
         ingredientMap.put("SRCR", new Ingredient("SRCR", "Sour Cream", SAUCE));
-    }
+    }*/
+
+/*    @Override
+    public Ingredient convert(String id) {
+        return ingredientMap.get(id);
+    }*/
 
     @Override
     public Ingredient convert(String id) {
-        return ingredientMap.get(id);
-    }
-
-    @Override
-    public <U> Converter<String, U> andThen(Converter<? super Ingredient, ? extends U> after) {
-        return Converter.super.andThen(after);
+        return ingredientRepo.findById(id).orElse(null);
     }
 }
