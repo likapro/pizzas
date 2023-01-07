@@ -10,20 +10,20 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class JdbcIngredientRepsitory implements IngredientRepository {
+public class JdbcIngredientRepsitory {
 
     private JdbcTemplate jdbcTemplate;
     public JdbcIngredientRepsitory(JdbcTemplate jdbcTemplate){
         this.jdbcTemplate = jdbcTemplate;
     }
-    @Override
+    //@Override
     public List<Ingredient> findAll() {
         return jdbcTemplate.query(
                 "select id, name, type from INGREDIENT",
                 this::mapRowToIngredient);
     }
 
-    @Override
+    //@Override
     public Optional<Ingredient> findById(String id) {
         List<Ingredient> results = jdbcTemplate.query(
                 "select id, name, type from Ingredient where id = ?",
@@ -43,7 +43,7 @@ public class JdbcIngredientRepsitory implements IngredientRepository {
         );
     }
 
-    @Override
+    //@Override
     public Ingredient save(Ingredient ingredient) {
         jdbcTemplate.update(
                 "insert into Ingredient (id, name, type) values (?, ?, ?)",
