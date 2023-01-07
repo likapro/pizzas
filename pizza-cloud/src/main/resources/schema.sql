@@ -8,7 +8,7 @@ create table if not exists Pizza_order (
     cc_Number varchar(16) not null,
     cc_Expiration varchar(5) not null,
     cc_CVV varchar(3) not null,
-    placedAt timestamp not null
+    placed_At timestamp not null
 );
 
 create table if not exists Pizza (
