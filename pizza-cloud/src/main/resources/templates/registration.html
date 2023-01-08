@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Pizza Cloud</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+
+<body>
+    <h1>Register</h1>
+
+    <img th:src="@{/images/PizzaCloud.png}"/>
+
+    <form method="POST" th:action="@{/register}" id="registerForm">
+
+        <label>
+            <input type="text" name="username"/>Username:
+        </label><br/>
+
+        <label>
+            <input type="text" name="password"/>Password:
+        </label><br/>
+
+        <label>
+            <input type="text" name="confirm"/>Confirm password:
+        </label><br/>
+
+        <label>
+            <input type="text" name="name"/>Full name:
+        </label><br/>
+
+        <label>
+            <input type="text" name="street"/>Street:
+        </label><br/>
+
+        <label>
+            <input type="text" name="city"/>City:
+        </label><br/>
+
+        <label>
+            <input type="text" name="state"/>State:
+        </label><br/>
+
+        <label>
+            <input type="text" name="zip"/>Zip:
+        </label><br/>
+
+        <label>
+            <input type="text" name="phone"/>Phone:
+        </label><br/>
+
+        <input type="submit" value="Register">
+    </form>
+</body>
