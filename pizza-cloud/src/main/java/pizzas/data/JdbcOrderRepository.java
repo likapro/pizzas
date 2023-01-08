@@ -160,4 +160,9 @@ public class JdbcOrderRepository implements OrderRepository {
             );
         }
     }
+
+    @Override
+    public List<PizzaOrder> findByDeliveryZip(String deliveryZip) {
+        return null;
+    }
 }
