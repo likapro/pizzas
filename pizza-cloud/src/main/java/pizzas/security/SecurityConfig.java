@@ -58,6 +58,8 @@ public class SecurityConfig {
                     .oauth2Login()
                         .loginPage("/login")
                 .and()
+                    .logout()
+                .and()
                 .build();
     }
 }

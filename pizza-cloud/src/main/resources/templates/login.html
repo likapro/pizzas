@@ -30,5 +30,12 @@
 
         <input type="submit" value="Login"/>
     </form>
+
+    <form method="POST" th:action="@{/logout}">
+        <input type="submit" value="Logout">
+    </form>
+
+    <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+
     </body>
 </html>
