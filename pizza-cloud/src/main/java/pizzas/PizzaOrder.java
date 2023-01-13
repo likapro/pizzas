@@ -36,6 +36,8 @@ public class PizzaOrder implements Serializable {
     @Digits(integer = 3, fraction = 0)
     private String ccCVV;
     private Date placedAt;
+    //@ManyToOne
+    private User user;
 
     private List<Pizza> pizzas = new ArrayList<>();
 
