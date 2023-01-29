@@ -37,7 +37,7 @@ public class PizzaOrder implements Serializable {
     private String ccCVV;
     private Date placedAt;
     //@ManyToOne
-    private User user;
+    //private User user;
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<Pizza> pizzas = new ArrayList<>();
